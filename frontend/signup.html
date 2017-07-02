@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <title>Login | BucketList</title>
+    <title>Sign Up | BucketList</title>
 </head>
 <body>
 
@@ -24,8 +24,8 @@
         <div class="collapse navbar-collapse" id="navaber-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="index.html">Home</a></li>
-                <li class="active"><a href="login.html">Login</a></li>
-                <li><a href="signup.html">Sign Up</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li class="active"><a href="signup.html">Sign Up</a></li>
             </ul>
         </div>
     </div>
@@ -37,24 +37,35 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default main-content">
                 <div class="panel-body">
-                    <div class="panel-heading">Login</div>
-
+                    <div class="panel-heading">Sign Up</div>
                     <form action="" class="form-horizontal" method="post">
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">
-                                <input type="text" class="form-control" placeholder="Username" required>
+                                <input type="text" class="form-control" placeholder="name" name="Name" required>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">
-                                <input type="password" class="form-control" placeholder="Password" required>
+                                <input type="text" class="form-control" placeholder="Username" name="username" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-3">
+                                <input type="password" class="form-control" placeholder="Password" name="password">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-3">
+                                <input type="password" class="form-control" placeholder="Password Confirmation" name="password-confirmation">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-5">
-                                <input type="submit" name="Login" class="btn btn-primary">
+                                <input type="submit" class="btn btn-primary" name="Create account">
                             </div>
                         </div>
 
@@ -66,9 +77,9 @@
 </div>
 
 <footer class="nav navbar-inverse navbar-fixed-bottom">
-<p class="pull-left footer-text">&copy; BucketList Inc All rights reserved</p>
-<p class="pull-right footer-text"><a class="footer-text" href="https://github.com/jokamjohn">John Kagga</a> - 2017
-</p>
+    <p class="pull-left footer-text">&copy; BucketList Inc All rights reserved</p>
+    <p class="pull-right footer-text"><a class="footer-text" href="https://github.com/jokamjohn">John Kagga</a> - 2017
+    </p>
 </footer>
 
 <script src="js/jquery.js"></script>
