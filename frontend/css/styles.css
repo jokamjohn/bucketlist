@@ -1,0 +1,26 @@
+.jumbotron {
+    margin-top: 70px;
+}
+
+.btn-xl {
+    padding: 10px 50px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.glyphicon {
+    font-size: 4em;
+    text-align: center;
+    display: block;
+}
+
+.footer {
+    margin-top: 20px;
+    border-bottom: 60px solid black;
+}
+
+.footer-text {
+    color: white;
+    margin: 10px;
+    text-align: center;
+}
