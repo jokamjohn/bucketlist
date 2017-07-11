@@ -21,4 +21,15 @@ class Application:
         return True
 
     def login_user(self, username, password):
-        pass
+        """
+        This method logins in a user by first checking whether they exist in the
+        user dictionary and whether their passwords match. 
+        Otherwise False is returned.
+        :param username: str
+        :param password: str
+        :return: bool 
+        """
+        if username in self.users.keys():
+            if self.users[username].password == password:
+                return True
+        return False
