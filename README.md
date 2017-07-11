@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jokamjohn/bucketlist.svg?branch=master)](https://travis-ci.org/jokamjohn/bucketlist)
+
 # BucketList
 
  This is an application that enables users to record and
