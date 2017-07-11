@@ -14,7 +14,7 @@
  Using Html and CSS with [Bootstrap](http://getbootstrap.com/)
  the wireframe designs were implemented. These include:-
  
- * [Home Page](ui/index.html)
+ * [Home Page](app/templates/index.html)
  * [Sign Up](ui/signup.html)
  * [Login](ui/login.html)
  * [Bucket List](ui/bucketlist.html)

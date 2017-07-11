@@ -8,3 +8,6 @@ from app import views
 
 # Linking the configuration file
 app.config.from_object('config.BaseConfig')
+
+
+
