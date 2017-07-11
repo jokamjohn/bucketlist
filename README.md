@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/jokamjohn/bucketlist.svg?branch=master)](https://travis-ci.org/jokamjohn/bucketlist)
 [![Coverage Status](https://coveralls.io/repos/github/jokamjohn/bucketlist/badge.svg?branch=master)](https://coveralls.io/github/jokamjohn/bucketlist?branch=master)
+[![Test Coverage](https://codeclimate.com/github/codeclimate/codeclimate/badges/coverage.svg)](https://codeclimate.com/github/codeclimate/codeclimate/coverage)
 
  This is an application that enables users to record and
  share things they want to achieve or experience before reaching
