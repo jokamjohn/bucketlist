@@ -25,6 +25,14 @@ class TestApplicationRoutes(unittest.TestCase):
         response = self.app.get('/home')
         self.assertEqual(response.status_code, 200, msg="Request was unsuccessful")
 
+    def test_sign_up_page_status_code(self):
+        response = self.app.get('/signup')
+        self.assertEqual(response.status_code, 200, msg="Request was unsuccessful")
+
+    def test_login_page_status_code(self):
+        response = self.app.get('/login')
+        self.assertEqual(response.status_code, 200, msg="Request was unsuccessful")
+
 
 if __name__ == '__main__':
     unittest.main()
