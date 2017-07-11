@@ -19,11 +19,11 @@ class TestApplicationRoutes(unittest.TestCase):
 
     def test_home_status_code(self):
         response = self.app.get('/')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200, msg="Request was unsuccessful")
 
     def test_home_page_status_code(self):
         response = self.app.get('/home')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200, msg="Request was unsuccessful")
 
 
 if __name__ == '__main__':
