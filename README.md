@@ -1,6 +1,7 @@
-[![Build Status](https://travis-ci.org/jokamjohn/bucketlist.svg?branch=master)](https://travis-ci.org/jokamjohn/bucketlist)
-
-[![Coverage Status](https://coveralls.io/repos/github/jokamjohn/bucketlist/badge.svg?branch=master)](https://coveralls.io/github/jokamjohn/bucketlist?branch=add_flask_implementation )
+[![Build Status](https://travis-ci.org/jokamjohn/bucketlist.svg?branch=add_flask_implementation)]
+(https://travis-ci.org/jokamjohn/bucketlist)
+[![Coverage Status](https://coveralls.io/repos/github/jokamjohn/bucketlist/badge.svg?branch=add_flask_implementation)]
+(https://coveralls.io/github/jokamjohn/bucketlist?branch=add_flask_implementation)
 
 # BucketList
 
