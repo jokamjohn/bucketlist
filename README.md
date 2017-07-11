@@ -19,3 +19,7 @@
  * [Login](ui/login.html)
  * [Bucket List](ui/bucketlist.html)
  * [Bucket List Item](ui/bucketlistitem.html) 
+
+## UML
+ You can find the [UML](uml/BucketList_UML_diagram.pdf) diagram 
+ for the User, BucketList and BucketItem classes.
