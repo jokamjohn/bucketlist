@@ -10,6 +10,7 @@
 </head>
 <body>
 
+<!--Start of navigation bar-->
 <nav class="nav navbar-inverse navbar-static-top">
     <div class="container">
         <div class="navbar-header">
@@ -28,18 +29,23 @@
             </ul>
         </div>
     </div>
-
 </nav>
+<!--End of navigation bar-->
 
+<!--Start of main content-->
 <div class="container">
     <div class="row bucket-page">
+
+        <!--Page heading and create bucket button-->
         <div class="col-md-12">
-            <h2 class="pull-left">Your Bucket items</h2>
+            <h2 class="pull-left">My Bucket items</h2>
             <a class="btn btn-primary btn-xl pull-right" type="button" data-toggle="modal"
                data-target="#add-item-modal">Add Item</a>
         </div>
+        <!--End of Page heading and create bucket button-->
     </div>
 
+    <!--Start of Dummy Buckets List Table-->
     <div class="table-condensed">
         <table class="table table-hover bucket-table">
             <tr>
@@ -75,9 +81,10 @@
             </tr>
             </tbody>
         </table>
+        <!--End of Dummy Buckets List Table-->
     </div>
 
-    <!--modal start-->
+    <!--Start of modal to create a bucket-->
     <div class="modal fade" tabindex="-1" role="dialog" id="add-item-modal">
         <div class="modal-dialog modal-sm" role="document">
             <div class="modal-content">
@@ -89,50 +96,69 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
+
+                            <!--Start of form for adding an item to a bucket-->
                             <form action="" class="form-horizontal" method="post">
+
+                                <!--Start of item name field-->
                                 <div class="form-group">
                                     <div class="col-md-12 ">
                                         <input type="text" class="form-control" placeholder="Item Name" name="name"
                                                required>
                                     </div>
                                 </div>
+                                <!--End of item name field-->
 
+                                <!--Start of deadline form field-->
                                 <div class="form-group">
                                     <div class="col-md-12 ">
                                         <input type="date" class="form-control" name="deadline" required>
                                     </div>
                                 </div>
+                                <!--End of deadline form field-->
 
+                                <!--Start of item description-->
                                 <div class="form-group">
                                     <div class="col-md-12 ">
                                         <textarea class="form-control" placeholder="Item description"
                                                   name="description" rows="5"></textarea>
                                     </div>
                                 </div>
+                                <!--End of item description-->
 
+                                <!--Start of modal submit button-->
                                 <div class="modal-footer">
                                     <div class="col-md-7 col-md-offset-2">
                                         <input type="submit" class="btn btn-primary" value="Add Item">
                                     </div>
                                 </div>
+                                <!--End of modal submit button-->
 
                             </form>
+                            <!--End of form for adding an item to a bucket-->
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!--modal end-->
+    <!--End of modal to create a bucket-->
 </div>
+<!--End of main content-->
 
+<!--Start of footer-->
 <footer class="nav navbar-inverse navbar-fixed-bottom">
     <p class="pull-left footer-text">&copy; BucketList Inc All rights reserved</p>
     <p class="pull-right footer-text"><a class="footer-text" href="https://github.com/jokamjohn">John Kagga</a> - 2017
     </p>
 </footer>
+<!--End of footer-->
 
+<!--Linked scripts-->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<!--End of linked scripts-->
+
 </body>
 </html>

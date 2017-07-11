@@ -10,6 +10,7 @@
 </head>
 <body>
 
+<!--Start of navigation bar-->
 <nav class="nav navbar-inverse navbar-static-top">
     <div class="container">
         <div class="navbar-header">
@@ -29,51 +30,88 @@
             </ul>
         </div>
     </div>
-
 </nav>
+<!--End of navigation bar-->
 
+<!--Start of main content-->
 <div class="container">
     <div class="row">
+
+        <!--Start of Panel holding the login form-->
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-default main-content">
                 <div class="panel-body">
                     <div class="panel-heading">Login</div>
 
+                    <!--Start of login form-->
                     <form action="" class="form-horizontal" method="post">
+
+                        <!--Start of user username field-->
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">
                                 <input type="text" class="form-control" placeholder="Username" required>
                             </div>
                         </div>
+                        <!--End user username field-->
 
+                        <!--Start of user password field-->
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">
                                 <input type="password" class="form-control" placeholder="Password" required>
                             </div>
                         </div>
+                        <!--End of user password field-->
 
+                        <!--Start of remember me check box-->
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-3">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> Remember me
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--End of remember me check box-->
+
+                        <!--Start of submit button -->
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-5">
                                 <input type="submit" value="Login" class="btn btn-primary">
                             </div>
                         </div>
+                        <!--End of submit button-->
+
                     </form>
+                    <!--End of login form-->
+
+                    <!--Start of link to creating an account-->
                     <div>
                         <p class="text-center">Don't have an account yet? <a href="signup.html">Sign Up</a></p>
                     </div>
+                    <!--End of link to creating an account-->
+
                 </div>
             </div>
         </div>
+        <!--End of Panel holding the login form-->
+
     </div>
 </div>
+<!--End of main content-->
 
+<!--Start of footer-->
 <footer class="nav navbar-inverse navbar-fixed-bottom">
     <p class="pull-left footer-text">&copy; BucketList Inc All rights reserved</p>
     <p class="pull-right footer-text"><a class="footer-text" href="https://github.com/jokamjohn">John Kagga</a> - 2017
     </p>
 </footer>
+<!--End of footer-->
 
+<!--Start of scripts-->
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<!--End of scripts-->
+
 </body>
 </html>
