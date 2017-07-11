@@ -3,7 +3,12 @@ from app.user import User
 from app.app import Application
 
 
-class TestApplication(unittest.TestCase):
+class TestUserAuthentication(unittest.TestCase):
+    """
+    Class to test the user authentication, both the registration
+    and login.
+    """
+
     def setUp(self):
         self.user = User('John', 'jokamjohn', '123456')
         self.app = Application()
@@ -22,3 +27,7 @@ class TestApplication(unittest.TestCase):
     def test_user_trying_to_login_has_entered_a_wrong_password(self):
         self.app.users = {'jokamjohn': self.user}
         return self.assertFalse(self.app.login_user('jokamjohn', 'sdfgdsfj'))
+
+
+if __name__ == '__main__':
+    unittest.main()
