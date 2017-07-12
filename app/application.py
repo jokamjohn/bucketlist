@@ -22,14 +22,23 @@ class Application:
 
     def login_user(self, username, password):
         """
-        This method logins in a user by first checking whether they exist in the
-        user dictionary and whether their passwords match. 
+        This method logins in a user by first checking whether their passwords match. 
         Otherwise False is returned.
         :param username: str
         :param password: str
         :return: bool 
         """
+        if self.users[username].password == password:
+            return True
+        return False
+
+    def does_user_exist(self, username):
+        """
+        This method check whether the user already exists within the
+        user dictionary.
+        :param username: 
+        :return: 
+        """
         if username in self.users.keys():
-            if self.users[username].password == password:
-                return True
+            return True
         return False

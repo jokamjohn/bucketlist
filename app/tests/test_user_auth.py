@@ -22,6 +22,10 @@ class TestUserAuthentication(unittest.TestCase):
 
     def test_user_sigining_in_is_already_registered(self):
         self.app.users = {'jokamjohn': self.user}
+        self.assertTrue(self.app.does_user_exist('jokamjohn'))
+
+    def test_user_trying_to_login_has_entered_a_correct_password(self):
+        self.app.users = {'jokamjohn': self.user}
         self.assertTrue(self.app.login_user('jokamjohn', '123456'))
 
     def test_user_trying_to_login_has_entered_a_wrong_password(self):

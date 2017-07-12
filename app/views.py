@@ -38,6 +38,21 @@ def signup():
     return render_template('signup.html', error=error)
 
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if request.form['username'] and request.form['password']:
+            application = Application()
+            if application.does_user_exist(request.form['username']):
+                if application.login_user(request.form['username'], request.form['password']):
+                    return redirect(url_for('bucketlist'))
+                return render_template('login.html', error="Incorrect password")
+            return render_template('login.html', error="No account found, please sign up first")
+        error = "Invalid credentials, try again"
+    return render_template('login.html', error=error)
+
+
 @app.route('/bucket/list')
 def bucketlist():
     """

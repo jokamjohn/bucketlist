@@ -20,7 +20,7 @@
  
  * [Home Page](app/templates/index.html)
  * [Sign Up](app/templates/signup.html)
- * [Login](ui/login.html)
+ * [Login](app/templates/login.html)
  * [Bucket List](app/templates/bucketlist.html)
  * [Bucket List Item](ui/bucketlistitem.html) 
 
