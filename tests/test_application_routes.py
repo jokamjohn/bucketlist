@@ -41,11 +41,6 @@ class TestApplicationRoutes(unittest.TestCase):
         response = self.app.get('/login', content_type="html/text")
         self.assertTrue(b'Login' in response.data)
 
-    def test_correct_user_registration(self):
-        data = {'name': 'john', 'username': 'jokamjohn', 'password': '123', 'password-confirmation': '123'}
-        response = self.app.post('/signup', data=data, follow_redirects=True)
-        self.assertIn(b'My Bucket List', response.data)
-
     def test_user_passwords_do_not_match_during_sign_up(self):
         data = {'name': 'john', 'username': 'jokamjohn', 'password': '123', 'password-confirmation': '234'}
         response = self.app.post('/signup', data=data, follow_redirects=True)

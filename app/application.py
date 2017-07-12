@@ -1,3 +1,6 @@
+import random
+import string
+
 """
 This class handles User registration and login
 """
@@ -42,3 +45,6 @@ class Application:
         if username in self.users.keys():
             return True
         return False
+
+    def generate_random_key(self):
+        return ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(10))

@@ -31,7 +31,7 @@ def signup():
                 user = User(request.form['name'], request.form['username'], request.form['password'])
                 application = Application()
                 if application.register_user(user):
-                    return redirect(url_for('bucketlist'))
+                    return redirect(url_for('login'))
                 return render_template('signup.html', error="You are already signed up, please login")
             error = 'The passwords do not match'
 

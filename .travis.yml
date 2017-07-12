@@ -9,4 +9,4 @@ env:
   CODECLIMATE_REPO_TOKEN: 15900a5efb7df2332a727a2484ae85eedebfdbfd2d1cccc7a6be2c5bc2e055ca
 
 script:
-  - nosetests --with-coverage --cover-package=app/Test
+  - nosetests --with-coverage --cover-package=tests
