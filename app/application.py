@@ -8,6 +8,7 @@ This class handles User registration and login
 
 class Application:
     users = {}
+    user_buckets = {}
 
     def register_user(self, user):
         """
@@ -46,5 +47,21 @@ class Application:
             return True
         return False
 
+    def get_user(self, username):
+        """
+        Get an instance of the User from the user dictionary using the
+        username
+        :param username: 
+        :return: 
+        """
+        if username in self.users.keys():
+            return self.users[username]
+        return None
+
     def generate_random_key(self):
+        """
+        Generate a random string to act as an Id when creating a bucket and 
+        bucket items
+        :return: 
+        """
         return ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(10))
