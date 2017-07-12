@@ -40,6 +40,13 @@ def signup():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    """
+    This method logins in an already existing user if their username and password
+    match those already stored.
+    It also shows errors to the user if their password is wrong or they do not 
+    already have an account.
+    :return: 
+    """
     error = None
     if request.method == 'POST':
         if request.form['username'] and request.form['password']:
