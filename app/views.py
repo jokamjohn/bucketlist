@@ -1,7 +1,10 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, session
 from app import app
 from app.application import Application
-from app.user import User
+from app.models import User
+from app.models import Bucket
+
+application = Application()
 
 
 @app.route('/')
@@ -28,8 +31,7 @@ def signup():
                 and request.form['password-confirmation']:
 
             if request.form['password'] == request.form['password-confirmation']:
-                user = User(request.form['name'], request.form['username'], request.form['password'])
-                application = Application()
+                user = User(request.form['username'], request.form['password'], request.form['name'])
                 if application.register_user(user):
                     return redirect(url_for('login'))
                 return render_template('signup.html', error="You are already signed up, please login")
@@ -50,9 +52,9 @@ def login():
     error = None
     if request.method == 'POST':
         if request.form['username'] and request.form['password']:
-            application = Application()
             if application.does_user_exist(request.form['username']):
                 if application.login_user(request.form['username'], request.form['password']):
+                    session['username'] = request.form['username']
                     return redirect(url_for('bucketlist'))
                 return render_template('login.html', error="Incorrect password")
             return render_template('login.html', error="No account found, please sign up first")
@@ -60,10 +62,19 @@ def login():
     return render_template('login.html', error=error)
 
 
-@app.route('/bucket/list')
+@app.route('/bucket/list', methods=['GET', 'POST'])
 def bucketlist():
     """
-    This method shows the user buckets
+    This method shows the user buckets.
+    When its a Post request a bucket is created
+    and attached to the user. Then redirected back 
     :return: 
     """
-    return render_template('bucketlist.html')
+    user = application.get_user(session['username'])
+    if not user:
+        return redirect(url_for('login'))
+    if request.method == 'POST':
+        name = request.form['name']
+        user.create_bucket(Bucket(application.generate_random_key(), name))
+        return redirect(url_for('bucketlist'))
+    return render_template('bucketlist.html', buckets=user.get_buckets())

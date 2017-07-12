@@ -1,5 +1,5 @@
 import unittest
-from app.user import User
+from app.models import User
 from app.application import Application
 
 
@@ -10,7 +10,7 @@ class TestUserAuthentication(unittest.TestCase):
     """
 
     def setUp(self):
-        self.user = User('John', 'jokamjohn', '123456')
+        self.user = User('jokamjohn', '123456', 'John')
         self.app = Application()
 
     def test_user_is_added_to_dictionary_when_created(self):
