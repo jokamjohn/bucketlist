@@ -19,9 +19,9 @@
  the wireframe designs were implemented. These include:-
  
  * [Home Page](app/templates/index.html)
- * [Sign Up](ui/signup.html)
+ * [Sign Up](app/templates/signup.html)
  * [Login](ui/login.html)
- * [Bucket List](ui/bucketlist.html)
+ * [Bucket List](app/templates/bucketlist.html)
  * [Bucket List Item](ui/bucketlistitem.html) 
 
 ## UML

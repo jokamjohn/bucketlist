@@ -1,6 +1,6 @@
 import unittest
 from app.user import User
-from app.app import Application
+from app.application import Application
 
 
 class TestUserAuthentication(unittest.TestCase):

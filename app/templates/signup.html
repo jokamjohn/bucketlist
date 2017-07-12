@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../app/static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../app/static/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="../app/static/css/styles.css">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../static/css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <title>Sign Up | BucketList</title>
 </head>
@@ -24,8 +24,8 @@
 
         <div class="collapse navbar-collapse" id="navaber-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="../app/templates/index.html">Home</a></li>
-                <li><a href="login.html">Login</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="../../ui/login.html">Login</a></li>
                 <li class="active"><a href="signup.html">Sign Up</a></li>
             </ul>
         </div>
@@ -44,7 +44,7 @@
                     <div class="panel-heading">Sign Up</div>
 
                     <!--Start of the sign up form-->
-                    <form action="" class="form-horizontal" method="post">
+                    <form action="{{ url_for('signup') }}" class="form-horizontal" method="post">
 
                         <!--Start of User name field-->
                         <div class="form-group">
@@ -65,7 +65,8 @@
                         <!--Start of user password field-->
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">
-                                <input type="password" class="form-control" placeholder="Password" name="password">
+                                <input type="password" class="form-control" placeholder="Password" name="password"
+                                       required>
                             </div>
                         </div>
                         <!--End of user password field-->
@@ -74,10 +75,16 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">
                                 <input type="password" class="form-control" placeholder="Password Confirmation"
-                                       name="password-confirmation">
+                                       name="password-confirmation" required>
                             </div>
                         </div>
                         <!--End of user password confirmation field-->
+
+                        <div>
+                            {% if  error %}
+                                <p class="text-center text-danger">{{ error }}</p>
+                            {% endif %}
+                        </div>
 
                         <!--Start of user submit button-->
                         <div class="form-group">
@@ -92,7 +99,7 @@
 
                     <!--Start of remember me checkbox-->
                     <div>
-                        <p class="text-center">Already have an account? <a href="login.html">Login</a></p>
+                        <p class="text-center">Already have an account? <a href="../../ui/login.html">Login</a></p>
                     </div>
                     <!--End of remember me checkbox-->
 
@@ -114,8 +121,8 @@
 <!--End of footer-->
 
 <!--Start of scripts-->
-<script src="../app/static/js/jquery.js"></script>
-<script src="../app/static/js/bootstrap.min.js"></script>
+<script src="../static/js/jquery.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
 <!--End of scripts-->
 
 </body>
