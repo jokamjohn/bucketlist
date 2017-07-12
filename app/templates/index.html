@@ -1,101 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../static/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="../static/css/styles.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <title>Home | BucketList</title>
-</head>
-<body>
+{% extends 'layout.html' %}
 
-<!--Start of navigation bar-->
-<nav class="nav navbar-inverse navbar-fixed-top">
+{% block title %}
+    Home | BucketList
+{% endblock %}
+
+{% block nav %}
+    <!--Start of navigation bar-->
+    <nav class="nav navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navaber-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand text-muted">BUCKETLIST</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navaber-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--End of navigation bar-->
+{% endblock %}
+
+{% block body %}
+    <!--Start of main content-->
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navaber-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="#" class="navbar-brand text-muted">BUCKETLIST</a>
-        </div>
 
-        <div class="collapse navbar-collapse" id="navaber-collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="/">Home</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="#">Sign Up</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<!--End of navigation bar-->
-
-<!--Start of main content-->
-<div class="container">
-
-    <!--Start of page header and jumbotron-->
-    <header class="page-header jumbotron">
-        <h1>Dreams and Goals tracking app</h1>
-        <p class="lead">
-            BucketList app allows you to record and share things you want to achieve or
-            experience before reaching a certain age.
-        </p>
-        <p class="text-center"><a href="login.html" class="btn btn-success btn-xl ">Get Started</a></p>
-    </header>
-    <!--End of page header and jumbotron-->
-
-    <!--Start of app feature columns-->
-    <div class="row">
-
-        <!--Start of create column-->
-        <div class="col-md-4">
-            <b class="glyphicon glyphicon-plus glyphicon-home"></b>
-            <h3 class="text-center">Create</h3>
-            <p class="text-center">Create a bucket and add your goals and dreams you want to achieve</p>
-        </div>
-        <!--End of create column-->
-
-        <!--Start of Edit column-->
-        <div class="col-md-4">
-            <b class="glyphicon glyphicon-edit glyphicon-home"></b>
-            <h3 class="text-center">Edit</h3>
-            <p class="text-center">Changed your mind or made a typo? No problem you can edit the bucket and its
-                items</p>
-        </div>
-        <!--End of Edit column-->
-
-        <!--Start of Share column-->
-        <div class="col-md-4">
-            <b class="glyphicon glyphicon-share glyphicon-home"></b>
-            <h3 class="text-center">Share</h3>
-            <p class="text-center">
-                We know you always want to share your achievements with family and friends.
-                Easily share your goals with them
+        <!--Start of page header and jumbotron-->
+        <header class="page-header jumbotron">
+            <h1>Dreams and Goals tracking app</h1>
+            <p class="lead">
+                BucketList app allows you to record and share things you want to achieve or
+                experience before reaching a certain age.
             </p>
+            <p class="text-center"><a href="{{ url_for('login') }}" class="btn btn-success btn-xl ">Get Started</a></p>
+        </header>
+        <!--End of page header and jumbotron-->
+
+        <!--Start of app feature columns-->
+        <div class="row">
+
+            <!--Start of create column-->
+            <div class="col-md-4">
+                <b class="glyphicon glyphicon-plus glyphicon-home"></b>
+                <h3 class="text-center">Create</h3>
+                <p class="text-center">Create a bucket and add your goals and dreams you want to achieve</p>
+            </div>
+            <!--End of create column-->
+
+            <!--Start of Edit column-->
+            <div class="col-md-4">
+                <b class="glyphicon glyphicon-edit glyphicon-home"></b>
+                <h3 class="text-center">Edit</h3>
+                <p class="text-center">Changed your mind or made a typo? No problem you can edit the bucket and its
+                    items</p>
+            </div>
+            <!--End of Edit column-->
+
+            <!--Start of Share column-->
+            <div class="col-md-4">
+                <b class="glyphicon glyphicon-share glyphicon-home"></b>
+                <h3 class="text-center">Share</h3>
+                <p class="text-center">
+                    We know you always want to share your achievements with family and friends.
+                    Easily share your goals with them
+                </p>
+            </div>
+            <!--End of Share column-->
+
         </div>
-        <!--End of Share column-->
+        <!--End of app features columns-->
 
     </div>
-    <!--End of app features columns-->
+    <!--End of main content-->
+{% endblock %}
 
-</div>
-<!--End of main content-->
-
-<!--Start of page footer-->
-<footer class="nav navbar-inverse navbar-fixed-bottom">
-    <p class="pull-left footer-text">&copy; BucketList Inc All rights reserved</p>
-    <p class="pull-right footer-text"><a class="footer-text" href="https://github.com/jokamjohn">John Kagga</a> - 2017
-    </p>
-</footer>
-<!--End of page footer-->
-
-<!--Start of scripts-->
-<script src="../static/js/jquery.js"></script>
-<script src="../static/js/bootstrap.min.js"></script>
-<!--End of scripts-->
-
-</body>
-</html>
