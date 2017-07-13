@@ -43,7 +43,10 @@ class User:
         :param bucket_id: 
         :return: 
         """
-        pass
+        if bucket_id in self.buckets.keys():
+            self.buckets.pop(bucket_id)
+            return True
+        return False
 
     def get_buckets(self):
         """

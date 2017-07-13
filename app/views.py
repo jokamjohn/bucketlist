@@ -90,10 +90,27 @@ def editbucket(bucket_id):
         return redirect(url_for('login'))
     bucket = user.get_bucket(bucket_id)
     if not bucket:
-        pass
+        return redirect(url_for('bucketlist'))
     if request.method == 'POST':
         if request.form['name']:
             if user.update_bucket(bucket_id, request.form['name']):
                 return redirect(url_for('bucketlist'))
         error = "Please provide the bucket name"
     return render_template('editbucket.html', error=error, bucket=bucket)
+
+
+@app.route('/delete/bucket/<bucket_id>', methods=['GET', 'POST'])
+def deletebucket(bucket_id):
+    error = None
+    user = application.get_user(session['username'])
+    if not user:
+        return redirect(url_for('login'))
+    bucket = user.get_bucket(bucket_id)
+    if not bucket:
+        return redirect(url_for('bucketlist'))
+
+    if request.method == 'POST':
+        if user.delete_bucket(bucket_id):
+            return redirect(url_for('bucketlist'))
+        error = "Could not delete the Bucket"
+    return render_template('deletebucket.html', error=error, bucket=bucket)

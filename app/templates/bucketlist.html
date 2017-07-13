@@ -50,13 +50,14 @@
                     <tr>
                         <th>Bucket</th>
                         <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                     <tbody>
                     {% for key, value in buckets.items() %}
                         <tr>
                             <td>{{ value.name }}</td>
                             <td><a href="{{ url_for('editbucket', bucket_id=value.id) }}"><i class="glyphicon glyphicon-edit"></i></a></td>
-                            <td></td>
+                            <td><a href="{{ url_for('deletebucket', bucket_id=value.id) }}"><i class="glyphicon glyphicon-trash"></i></a></td>
                         </tr>
                     {% endfor %}
                     </tbody>

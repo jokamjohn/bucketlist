@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-    Edit Bucket
+    Delete Bucket
 {% endblock %}
 
 {% block nav %}
@@ -36,31 +36,27 @@
             <div class="col-md-6 col-md-offset-3">
                 <div class="panel panel-default main-content">
                     <div class="panel-body">
-                        <div class="panel-heading">Edit <strong>{{ bucket.name }}</strong>Bucket</div>
+                        <div class="panel-heading">Delete <strong>{{ bucket.name }}</strong> Bucket</div>
 
                         <!--Start of login form-->
-                        <form action="{{ url_for("editbucket", bucket_id=bucket.id) }}" class="form-horizontal"
+                        <form action="{{ url_for("deletebucket", bucket_id=bucket.id) }}" class="form-horizontal"
                               method="post">
 
-                            <!--Start of name field-->
-                            <div class="form-group">
-                                <div class="col-md-6 col-md-offset-3">
-                                    <input type="text" class="form-control" name="name" value="{{ bucket.name }}"
-                                           required>
+                            {% if  error %}
+                                <div>
+                                    <p class="text-center text-danger">{{ error }}</p>
                                 </div>
-                            </div>
-                            <!--End user name field-->
+                            {% endif %}
 
                             <div>
-                                {% if  error %}
-                                    <p class="text-center text-danger">{{ error }}</p>
-                                {% endif %}
+                                <p class="text-danger text-center">You are about to delete {{ bucket.name }} Bucket.
+                                    This is
+                                    permanent, cannot be undone!</p>
                             </div>
-
                             <!--Start of submit button -->
                             <div class="form-group">
-                                <div class="col-md-6 col-md-offset-5">
-                                    <input type="submit" value="Update" class="btn btn-primary">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <input type="submit" value="Delete Bucket" class="btn btn-danger btn-lg">
                                 </div>
                             </div>
                             <!--End of submit button-->
