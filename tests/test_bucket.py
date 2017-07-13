@@ -22,3 +22,15 @@ class TestUserBucket(unittest.TestCase):
 
     def test_none_is_returned_for_a_bucket_that_does_not_exist(self):
         self.assertIsNone(self.user.get_bucket("ABGDTAD"))
+
+    def test_a_bucket_is_updated(self):
+        bucket = Bucket("AZXDJSA", "Travel")
+        self.user.buckets = {"AZXDJSA": bucket}
+        self.user.update_bucket("AZXDJSA", 'Sleeping')
+        self.assertEqual(self.user.get_bucket("AZXDJSA").name, "Sleeping")
+
+    def test_the_bucket_to_be_updated_does_not_exist(self):
+        self.assertFalse(self.user.update_bucket("BDBHGF", "Playing"))
+
+if __name__ == '__main__':
+    unittest.main()
