@@ -8,9 +8,42 @@
  a certain age and keeping track of their dreams and
  goals.
  
- ## Wire-Frames
- The [Wireframes](wireframes/Bucketlist.pdf) contain the
- structure and intended design of the Bucket List
- application.
+ ## Setup
+ To start using this application, first clone it to your local machine by running
+ 
+ ```
+ git clone https://github.com/jokamjohn/bucketlist.git
+ cd bucketlist
+ ```
+ 
+ Create the virtual environment and activate it
+ 
+ ```
+ virtualenv env
+ source env/bin/activate
+
+```
+
+Then install all the required dependencies
+
+```
+pip install -r requirements.txt
+
+```
+
+Then run the application
+
+```
+python run.py
+
+```
+
+To now view the application head over to
+```
+http://localhost:5000
+
+```
+ 
+
  
  
