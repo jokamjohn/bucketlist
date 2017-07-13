@@ -70,11 +70,13 @@ def bucketlist():
     and attached to the user. Then redirected back 
     :return: 
     """
+    error = None
     user = application.get_user(session['username'])
     if not user:
         return redirect(url_for('login'))
     if request.method == 'POST':
         name = request.form['name']
-        user.create_bucket(Bucket(application.generate_random_key(), name))
-        return redirect(url_for('bucketlist'))
-    return render_template('bucketlist.html', buckets=user.get_buckets())
+        if user.create_bucket(Bucket(application.generate_random_key(), name)):
+            return redirect(url_for('bucketlist'))
+        error = "Could not create the Bucket, it already exists"
+    return render_template('bucketlist.html', error=error, buckets=user.get_buckets())

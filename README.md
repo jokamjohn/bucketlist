@@ -13,16 +13,4 @@
  structure and intended design of the Bucket List
  application.
  
- ## Design Implementation
- Using Html and CSS with [Bootstrap](http://getbootstrap.com/)
- the wireframe designs were implemented. These include:-
  
- * [Home Page](app/templates/index.html)
- * [Sign Up](app/templates/signup.html)
- * [Login](app/templates/login.html)
- * [Bucket List](app/templates/bucketlist.html)
- * [Bucket List Item](app/templates/bucketlistitem.html) 
-
-## UML
- You can find the [UML](uml/BucketList_UML_diagram.pdf) diagram 
- for the User, BucketList and BucketItem classes.
