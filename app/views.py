@@ -3,6 +3,7 @@ from app import app
 from app.application import Application
 from app.models import User
 from app.models import Bucket
+from app.models import BucketItem
 
 application = Application()
 
@@ -84,6 +85,11 @@ def bucketlist():
 
 @app.route('/edit/bucket/<bucket_id>', methods=['GET', 'POST'])
 def editbucket(bucket_id):
+    """
+    This route enables a user to edit their buckets
+    :param bucket_id: 
+    :return: 
+    """
     error = None
     user = application.get_user(session['username'])
     if not user:
@@ -101,6 +107,11 @@ def editbucket(bucket_id):
 
 @app.route('/delete/bucket/<bucket_id>', methods=['GET', 'POST'])
 def deletebucket(bucket_id):
+    """
+    This route enables a user to delete a bucket
+    :param bucket_id: 
+    :return: 
+    """
     error = None
     user = application.get_user(session['username'])
     if not user:
@@ -114,3 +125,30 @@ def deletebucket(bucket_id):
             return redirect(url_for('bucketlist'))
         error = "Could not delete the Bucket"
     return render_template('deletebucket.html', error=error, bucket=bucket)
+
+
+@app.route('/bucket/items/<bucket_id>', methods=['GET', 'POST'])
+def bucketitems(bucket_id):
+    """
+    Route to show and create bucket items.
+    :param bucket_id: 
+    :return: 
+    """
+    error = None
+    user = application.get_user(session['username'])
+    if not user:
+        return redirect(url_for('login'))
+    bucket = user.get_bucket(bucket_id)
+    if not bucket:
+        return redirect(url_for('bucketlist'))
+
+    if request.method == 'POST':
+        if request.form['name']:
+            if bucket.create_item(
+                    BucketItem(application.generate_random_key(), request.form['name'], request.form['description'],
+                               request.form['deadline'])):
+                return redirect(url_for('bucketitems', bucket_id=bucket.id))
+        error = "Item cannot be created"
+    return render_template('bucketlistitem.html', error=error, bucket=bucket)
+
+

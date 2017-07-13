@@ -55,9 +55,11 @@
                     <tbody>
                     {% for key, value in buckets.items() %}
                         <tr>
-                            <td>{{ value.name }}</td>
-                            <td><a href="{{ url_for('editbucket', bucket_id=value.id) }}"><i class="glyphicon glyphicon-edit"></i></a></td>
-                            <td><a href="{{ url_for('deletebucket', bucket_id=value.id) }}"><i class="glyphicon glyphicon-trash"></i></a></td>
+                            <td><a href="{{ url_for('bucketitems', bucket_id=value.id) }}">{{ value.name }}</a></td>
+                            <td><a href="{{ url_for('editbucket', bucket_id=value.id) }}"><i
+                                    class="glyphicon glyphicon-edit"></i></a></td>
+                            <td><a href="{{ url_for('deletebucket', bucket_id=value.id) }}"><i
+                                    class="glyphicon glyphicon-trash"></i></a></td>
                         </tr>
                     {% endfor %}
                     </tbody>

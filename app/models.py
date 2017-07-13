@@ -88,13 +88,6 @@ class Bucket:
             self.items[item.id] = item
             return True
 
-    def get_items(self):
-        """
-        Get all the item
-        :return: 
-        """
-        return self.items
-
 
 class BucketItem:
     """

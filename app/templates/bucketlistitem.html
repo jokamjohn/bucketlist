@@ -35,51 +35,47 @@
 
             <!--Page heading and create bucket button-->
             <div class="col-md-12">
-                <h2 class="pull-left">My Bucket items</h2>
+                <h2 class="pull-left"><strong>{{ bucket.name }}</strong> Bucket items</h2>
                 <a class="btn btn-primary btn-xl pull-right" type="button" data-toggle="modal"
                    data-target="#add-item-modal">Add Item</a>
             </div>
             <!--End of Page heading and create bucket button-->
         </div>
 
-        <!--Start of Dummy Buckets List Table-->
-        <div class="table-condensed">
-            <table class="table table-hover bucket-table">
-                <tr>
-                    <th>Item</th>
-                    <th>Description</th>
-                    <th>Deadline</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </tr>
-                <tbody>
-                <tr>
-                    <td>HTML</td>
-                    <td><p>Description</p></td>
-                    <td><p>Tuesday 23, July 2017</p></td>
-                    <td><a href="#"><i class="glyphicon glyphicon-edit"></i></a></td>
-                    <td><a href="#"><i class="glyphicon glyphicon-trash"></i></a></td>
-                </tr>
+        {% if bucket %}
+            <!--Start of Dummy Buckets List Table-->
+            <div class="table-condensed">
+                <table class="table table-hover bucket-table">
+                    <tr>
+                        <th>Item</th>
+                        <th>Description</th>
+                        <th>Deadline</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tbody>
+                    {% for key, item in bucket.items.items() %}
+                        <tr>
+                            <td>{{ item.name }}</td>
+                            <td><p>{{ item.description }}n</p></td>
+                            <td><p>{{ item.deadline }}</p></td>
+{#                            <td><a href="#"><i class="glyphicon glyphicon-edit"></i></a></td>#}
+{#                            <td><a href="#"><i class="glyphicon glyphicon-trash"></i></a></td>#}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <!--End of Dummy Buckets List Table-->
+            </div>
 
-                <tr>
-                    <td>CSS</td>
-                    <td><p>Description</p></td>
-                    <td><p>Tuesday 23, July 2017</p></td>
-                    <td><a href="#"><i class="glyphicon glyphicon-edit"></i></a></td>
-                    <td><a href="#"><i class="glyphicon glyphicon-trash"></i></a></td>
-                </tr>
-
-                <tr>
-                    <td>Python</td>
-                    <td><p>Description</p></td>
-                    <td><p>Tuesday 23, July 2017</p></td>
-                    <td><a href="#"><i class="glyphicon glyphicon-edit"></i></a></td>
-                    <td><a href="#"><i class="glyphicon glyphicon-trash"></i></a></td>
-                </tr>
-                </tbody>
-            </table>
-            <!--End of Dummy Buckets List Table-->
-        </div>
+        {% else %}
+            <div>
+                <p class="text-center main-content">You do not have any items yet. Please click the
+                    <strong>Add Item</strong>
+                    button to add items
+                </p>
+            </div>
+        {% endif %}
 
         <!--Start of modal to create a bucket-->
         <div class="modal fade" tabindex="-1" role="dialog" id="add-item-modal">
@@ -95,7 +91,7 @@
                             <div class="col-md-12">
 
                                 <!--Start of form for adding an item to a bucket-->
-                                <form action="{{ url_for('bucket_items', bucket_id = bucket.id) }}"
+                                <form action="{{ url_for('bucketitems', bucket_id = bucket.id) }}"
                                       class="form-horizontal"
                                       method="post">
 
