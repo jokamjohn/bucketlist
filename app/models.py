@@ -36,6 +36,15 @@ class User:
             return True
         return False
 
+    def delete_bucket(self, bucket_id):
+        """
+        Delete a bucket from the User's bucket if
+        it exists.
+        :param bucket_id: 
+        :return: 
+        """
+        pass
+
     def get_buckets(self):
         """
         Get a user's buckets

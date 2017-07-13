@@ -32,5 +32,14 @@ class TestUserBucket(unittest.TestCase):
     def test_the_bucket_to_be_updated_does_not_exist(self):
         self.assertFalse(self.user.update_bucket("BDBHGF", "Playing"))
 
+    def test_a_bucket_is_successfully_deleted(self):
+        bucket = Bucket("AZXDJSA", "Travel")
+        self.user.buckets = {"AZXDJSA": bucket}
+        self.user.delete_bucket("AZXDJSA")
+        self.assertEqual(self.user.buckets, {})
+
+    def test_false_is_returned_when_deleting_un_existing_bucket(self):
+        self.assertFalse(self.user.delete_bucket("AZXDJSA"))
+
 if __name__ == '__main__':
     unittest.main()
