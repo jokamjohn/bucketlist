@@ -21,6 +21,21 @@ class User:
             self.buckets[bucket.id] = bucket
             return True
 
+    def update_bucket(self, bucket_id, name):
+        """
+        This method first checks whether the bucket exists,
+        if it does it changes the bucket name to the
+        new one
+        :param bucket_id: 
+        :param name: 
+        :return: 
+        """
+        if bucket_id in self.buckets.keys():
+            bucket = self.buckets[bucket_id]
+            bucket.name = name
+            return True
+        return False
+
     def get_buckets(self):
         """
         Get a user's buckets

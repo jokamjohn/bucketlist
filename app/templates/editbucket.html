@@ -1,0 +1,83 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Edit
+{% endblock %}
+
+{% block nav %}
+    <!--Start of navigation bar-->
+    <nav class="nav navbar-inverse navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navaber-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="index.html" class="navbar-brand text-muted">BUCKETLIST</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navaber-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="#">John Kagga</a></li>
+                    <li class="active"><a href="#">logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--End of navigation bar-->
+{% endblock %}
+
+{% block body %}
+<!--Start of main content-->
+    <div class="container">
+        <div class="row">
+            <!--Start of Panel holding the login form-->
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-default main-content">
+                    <div class="panel-body">
+                        <div class="panel-heading">Edit Bucket Name</div>
+
+                        <!--Start of login form-->
+                        <form action="{{ url_for("editbucket", bucket_id=bucket.id) }}" class="form-horizontal" method="post">
+
+                            <!--Start of name field-->
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <input type="text" class="form-control"  name="name" value="{{ bucket.name }}"
+                                           required>
+                                </div>
+                            </div>
+                            <!--End user name field-->
+
+                            <div>
+                                {% if  error %}
+                                    <p class="text-center text-danger">{{ error }}</p>
+                                {% endif %}
+                            </div>
+
+                            <!--Start of submit button -->
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-5">
+                                    <input type="submit" value="Update" class="btn btn-primary">
+                                </div>
+                            </div>
+                            <!--End of submit button-->
+
+                        </form>
+                        <!--End of edit form-->
+
+                        <!--Cancel edit-->
+                        <div>
+                            <a href="{{ url_for('bucketlist') }}">Cancel</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--End of Panel -->
+
+        </div>
+    </div>
+    <!--End of main content-->
+{% endblock %}

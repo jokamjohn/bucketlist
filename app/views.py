@@ -80,3 +80,20 @@ def bucketlist():
             return redirect(url_for('bucketlist'))
         error = "Could not create the Bucket, it already exists"
     return render_template('bucketlist.html', error=error, buckets=user.get_buckets())
+
+
+@app.route('/edit/bucket/<bucket_id>', methods=['GET', 'POST'])
+def editbucket(bucket_id):
+    error = None
+    user = application.get_user(session['username'])
+    if not user:
+        return redirect(url_for('login'))
+    bucket = user.get_bucket(bucket_id)
+    if not bucket:
+        pass
+    if request.method == 'POST':
+        if request.form['name']:
+            if user.update_bucket(bucket_id, request.form['name']):
+                return redirect(url_for('bucketlist'))
+        error = "Please provide the bucket name"
+    return render_template('editbucket.html', error=error, bucket=bucket)
