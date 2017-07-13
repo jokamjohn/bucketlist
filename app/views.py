@@ -154,6 +154,12 @@ def bucketitems(bucket_id):
 
 @app.route('/bucket/item/<bucket_id>/<item_id>', methods=['GET', 'POST'])
 def edititem(bucket_id, item_id):
+    """
+    Route to edit an item specified by the Id
+    :param bucket_id: 
+    :param item_id: 
+    :return: 
+    """
     user = application.get_user(session['username'])
     if not user:
         return redirect(url_for('login'))
@@ -166,8 +172,30 @@ def edititem(bucket_id, item_id):
         if request.form['name'] and request.form['description'] and request.form['deadline']:
             if bucket.update_item(item_id, request.form['name'], request.form['description'],
                                   request.form['deadline']):
-                return redirect(url_for('bucketitems', bucket_id=bucket_id))
+                return redirect(url_for('bucketitems', bucket_id=bucket.id))
     return render_template('editbucketitem.html', bucket=bucket, item=item, user=user)
+
+
+@app.route('/bucket/item/delete/<bucket_id>/<item_id>', methods=['GET', 'POST'])
+def deleteitem(bucket_id, item_id):
+    """
+    Route to delete an item from a bucket specified by the Id.
+    :param bucket_id: 
+    :param item_id: 
+    :return: 
+    """
+    user = application.get_user(session['username'])
+    if not user:
+        return redirect(url_for('login'))
+    bucket = user.get_bucket(bucket_id)
+    item = bucket.get_item(item_id)
+    if not bucket and not item:
+        return redirect(url_for('bucketlist'))
+
+    if request.method == 'POST':
+        if bucket.delete_item(item_id):
+            return redirect(url_for('bucketlist'))
+    return render_template('deleteitem.html', user=user, bucket=bucket, item=item)
 
 
 @app.route('/logout')
@@ -176,7 +204,7 @@ def logout():
     This methods clears the user session and logs the user out
     :return: 
     """
-    session.pop('email', None)
+    session.pop('username', None)
     return redirect(url_for('login'))
 
 

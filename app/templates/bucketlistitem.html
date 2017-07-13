@@ -61,7 +61,8 @@
                             <td><p>{{ item.deadline }}</p></td>
                             <td><a href="{{ url_for('edititem', bucket_id=bucket.id, item_id=item.id) }}"><i
                                     class="glyphicon glyphicon-edit"></i></a></td>
-                            {#                            <td><a href="#"><i class="glyphicon glyphicon-trash"></i></a></td>#}
+                            <td><a href="{{ url_for('deleteitem', bucket_id= bucket.id, item_id=item.id) }}"><i
+                                    class="glyphicon glyphicon-trash"></i></a></td>
                         </tr>
                     {% endfor %}
                     </tbody>

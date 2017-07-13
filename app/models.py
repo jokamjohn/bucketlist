@@ -115,6 +115,17 @@ class Bucket:
             return True
         return False
 
+    def delete_item(self, item_id):
+        """
+        Delete an item from the bucket.
+        :param item_id: 
+        :return: 
+        """
+        if item_id in self.items.keys():
+            self.items.pop(item_id)
+            return True
+        return False
+
 
 class BucketItem:
     """
