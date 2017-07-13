@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-    Edit Bucket
+    Edit BucketItem
 {% endblock %}
 
 {% block nav %}
@@ -36,20 +36,37 @@
             <div class="col-md-6 col-md-offset-3">
                 <div class="panel panel-default main-content">
                     <div class="panel-body">
-                        <div class="panel-heading">Edit <strong>{{ bucket.name }}</strong>Bucket</div>
+                        <div class="panel-heading">Edit <strong>{{ item.name }}</strong> Bucket</div>
 
-                        <!--Start of login form-->
+
                         <form action="{{ url_for("editbucket", bucket_id=bucket.id) }}" class="form-horizontal"
                               method="post">
 
-                            <!--Start of name field-->
+                            <!--Start of item name field-->
                             <div class="form-group">
-                                <div class="col-md-6 col-md-offset-3">
-                                    <input type="text" class="form-control" name="name" value="{{ bucket.name }}"
+                                <div class="col-md-12 ">
+                                    <input type="text" class="form-control" value="{{ item.name }}" name="name"
                                            required>
                                 </div>
                             </div>
-                            <!--End user name field-->
+                            <!--End of item name field-->
+
+                            <!--Start of deadline form field-->
+                            <div class="form-group">
+                                <div class="col-md-12 ">
+                                    <input type="date" class="form-control" name="deadline" value="{{ item.deadline }}" required>
+                                </div>
+                            </div>
+                            <!--End of deadline form field-->
+
+                            <!--Start of item description-->
+                            <div class="form-group">
+                                <div class="col-md-12 ">
+                                        <textarea class="form-control"
+                                                  name="description" rows="5">{{ item.description }}</textarea>
+                                </div>
+                            </div>
+                            <!--End of item description-->
 
                             <div>
                                 {% if  error %}
@@ -60,7 +77,7 @@
                             <!--Start of submit button -->
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-5">
-                                    <input type="submit" value="Update" class="btn btn-primary">
+                                    <input type="submit" value="Update Item" class="btn btn-primary">
                                 </div>
                             </div>
                             <!--End of submit button-->

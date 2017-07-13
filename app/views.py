@@ -80,7 +80,7 @@ def bucketlist():
         if user.create_bucket(Bucket(application.generate_random_key(), name)):
             return redirect(url_for('bucketlist'))
         error = "Could not create the Bucket, it already exists"
-    return render_template('bucketlist.html', error=error, buckets=user.get_buckets())
+    return render_template('bucketlist.html', error=error, buckets=user.get_buckets(), user=user)
 
 
 @app.route('/edit/bucket/<bucket_id>', methods=['GET', 'POST'])
@@ -102,7 +102,7 @@ def editbucket(bucket_id):
             if user.update_bucket(bucket_id, request.form['name']):
                 return redirect(url_for('bucketlist'))
         error = "Please provide the bucket name"
-    return render_template('editbucket.html', error=error, bucket=bucket)
+    return render_template('editbucket.html', error=error, bucket=bucket, user=user)
 
 
 @app.route('/delete/bucket/<bucket_id>', methods=['GET', 'POST'])
@@ -124,7 +124,7 @@ def deletebucket(bucket_id):
         if user.delete_bucket(bucket_id):
             return redirect(url_for('bucketlist'))
         error = "Could not delete the Bucket"
-    return render_template('deletebucket.html', error=error, bucket=bucket)
+    return render_template('deletebucket.html', error=error, bucket=bucket, user=user)
 
 
 @app.route('/bucket/items/<bucket_id>', methods=['GET', 'POST'])
@@ -149,6 +149,42 @@ def bucketitems(bucket_id):
                                request.form['deadline'])):
                 return redirect(url_for('bucketitems', bucket_id=bucket.id))
         error = "Item cannot be created"
-    return render_template('bucketlistitem.html', error=error, bucket=bucket)
+    return render_template('bucketlistitem.html', error=error, bucket=bucket, user=user)
 
 
+@app.route('/bucket/item/<bucket_id>/<item_id>', methods=['GET', 'POST'])
+def edititem(bucket_id, item_id):
+    user = application.get_user(session['username'])
+    if not user:
+        return redirect(url_for('login'))
+    bucket = user.get_bucket(bucket_id)
+    item = bucket.get_item(item_id)
+    if not bucket and not item:
+        return redirect(url_for('bucketlist'))
+
+    if request.method == 'POST':
+        if request.form['name'] and request.form['description'] and request.form['deadline']:
+            if bucket.update_item(item_id, request.form['name'], request.form['description'],
+                                  request.form['deadline']):
+                return redirect(url_for('bucketitems', bucket_id=bucket_id))
+    return render_template('editbucketitem.html', bucket=bucket, item=item, user=user)
+
+
+@app.route('/logout')
+def logout():
+    """
+    This methods clears the user session and logs the user out
+    :return: 
+    """
+    session.pop('email', None)
+    return redirect(url_for('login'))
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    """
+    The page to return in case a route is not defined.
+    :param e: 
+    :return: 
+    """
+    return render_template('404.html'), 404

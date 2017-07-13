@@ -19,8 +19,8 @@
 
             <div class="collapse navbar-collapse" id="navaber-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="#">John Kagga</a></li>
-                    <li class="active"><a href="#">logout</a></li>
+                    <li class="active"><a href="">{{ user.username.upper() }}</a></li>
+                    <li class="active"><a href="{{ url_for('logout') }}">logout</a></li>
                 </ul>
             </div>
         </div>
@@ -59,8 +59,9 @@
                             <td>{{ item.name }}</td>
                             <td><p>{{ item.description }}n</p></td>
                             <td><p>{{ item.deadline }}</p></td>
-{#                            <td><a href="#"><i class="glyphicon glyphicon-edit"></i></a></td>#}
-{#                            <td><a href="#"><i class="glyphicon glyphicon-trash"></i></a></td>#}
+                            <td><a href="{{ url_for('edititem', bucket_id=bucket.id, item_id=item.id) }}"><i
+                                    class="glyphicon glyphicon-edit"></i></a></td>
+                            {#                            <td><a href="#"><i class="glyphicon glyphicon-trash"></i></a></td>#}
                         </tr>
                     {% endfor %}
                     </tbody>

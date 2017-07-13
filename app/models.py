@@ -88,6 +88,33 @@ class Bucket:
             self.items[item.id] = item
             return True
 
+    def get_item(self, item_id):
+        """
+        Get the item by its Id
+        :param item_id: 
+        :return: 
+        """
+        if item_id in self.items.keys():
+            return self.items[item_id]
+        return None
+
+    def update_item(self, item_id, name, description, deadline):
+        """
+        Method to update the item in the bucket.
+        :param item_id: 
+        :param name: 
+        :param description: 
+        :param deadline: 
+        :return: 
+        """
+        if item_id in self.items.keys():
+            item = self.items[item_id]
+            item.name = name
+            item.description = description
+            item.deadline = deadline
+            return True
+        return False
+
 
 class BucketItem:
     """
