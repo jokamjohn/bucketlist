@@ -14,7 +14,7 @@ class TestUserAuthentication(unittest.TestCase):
         self.app = Application()
 
     def test_user_is_added_to_dictionary_when_created(self):
-        self.assertTrue(self.app.register_user(self.user))
+        self.assertTrue(self.app.register_user(User('jokam', '123456', 'John')))
 
     def test_user_already_exists_in_user_dictionary(self):
         self.app.users = {'jokamjohn': self.user}
