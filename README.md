@@ -48,6 +48,10 @@ To now view the application head over to
 http://localhost:5000
 ```
  
+### UML
+The application also has a UML diagram. For the structure of the app check it out 
+[here](uml/BucketList_UML.pdf)
+
 ### Testing
 You can then run the application tests using
 ```

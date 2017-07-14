@@ -8,7 +8,6 @@ This class handles User registration and login
 
 class Application:
     users = {}
-    user_buckets = {}
 
     def register_user(self, user):
         """
