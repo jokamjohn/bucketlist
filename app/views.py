@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, session
+from flask import render_template, request, redirect, url_for, session, flash
 from app import app
 from app.application import Application
 from app.models import User
@@ -34,6 +34,7 @@ def signup():
             if request.form['password'] == request.form['password-confirmation']:
                 user = User(request.form['username'], request.form['password'], request.form['name'])
                 if application.register_user(user):
+                    flash("You have successfully signed up. Please Login")
                     return redirect(url_for('login'))
                 return render_template('signup.html', error="You are already signed up, please login")
             error = 'The passwords do not match'
@@ -78,6 +79,7 @@ def bucketlist():
     if request.method == 'POST':
         name = request.form['name']
         if user.create_bucket(Bucket(application.generate_random_key(), name)):
+            flash("You have successfully added a Bucket")
             return redirect(url_for('bucketlist'))
         error = "Could not create the Bucket, it already exists"
     return render_template('bucketlist.html', error=error, buckets=user.get_buckets(), user=user)
@@ -100,6 +102,7 @@ def editbucket(bucket_id):
     if request.method == 'POST':
         if request.form['name']:
             if user.update_bucket(bucket_id, request.form['name']):
+                flash("You have successfully updated your Bucket")
                 return redirect(url_for('bucketlist'))
         error = "Please provide the bucket name"
     return render_template('editbucket.html', error=error, bucket=bucket, user=user)
@@ -122,6 +125,7 @@ def deletebucket(bucket_id):
 
     if request.method == 'POST':
         if user.delete_bucket(bucket_id):
+            flash("You have successfully Deleted a Bucket")
             return redirect(url_for('bucketlist'))
         error = "Could not delete the Bucket"
     return render_template('deletebucket.html', error=error, bucket=bucket, user=user)
@@ -147,6 +151,7 @@ def bucketitems(bucket_id):
             if bucket.create_item(
                     BucketItem(application.generate_random_key(), request.form['name'], request.form['description'],
                                request.form['deadline'])):
+                flash("You have successfully added an Item to the Bucket")
                 return redirect(url_for('bucketitems', bucket_id=bucket.id))
         error = "Item cannot be created"
     return render_template('bucketlistitem.html', error=error, bucket=bucket, user=user)
@@ -172,6 +177,7 @@ def edititem(bucket_id, item_id):
         if request.form['name'] and request.form['description'] and request.form['deadline']:
             if bucket.update_item(item_id, request.form['name'], request.form['description'],
                                   request.form['deadline']):
+                flash("You have successfully updated your Item in the Bucket")
                 return redirect(url_for('bucketitems', bucket_id=bucket.id))
     return render_template('editbucketitem.html', bucket=bucket, item=item, user=user)
 
@@ -194,7 +200,8 @@ def deleteitem(bucket_id, item_id):
 
     if request.method == 'POST':
         if bucket.delete_item(item_id):
-            return redirect(url_for('bucketlist'))
+            flash('You have successfully deleted an Item from the Bucket')
+            return redirect(url_for('bucketitems', bucket_id=bucket.id))
     return render_template('deleteitem.html', user=user, bucket=bucket, item=item)
 
 

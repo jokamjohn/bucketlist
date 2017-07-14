@@ -43,6 +43,22 @@
         </div>
         <!--End of Page heading and create bucket item button-->
 
+        <!--Show flash messages-->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="row">
+                    <div class="col-md-12">
+                        {% for message in messages %}
+                            <div class="alert alert-success alert-dismissable">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                <strong>Success!</strong> {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endwith %}
+
         <!--Start of table having dummy bucket items-->
         {% if buckets %}
             <div class="table-condensed">

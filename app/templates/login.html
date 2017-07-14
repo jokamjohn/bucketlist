@@ -31,8 +31,22 @@
 
 {% block body %}
     <!--Start of main content-->
-    <div class="container">
+    <div class="container main-content">
+
+    <!--Display flash message-->
         <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-success alert-dismissable">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                <strong>Success!</strong> {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
 
             <!--Start of Panel holding the login form-->
             <div class="col-md-6 col-md-offset-3">
@@ -80,7 +94,8 @@
 
                         <!--Start of link to creating an account-->
                         <div>
-                            <p class="text-center">Don't have an account yet? <a href="{{ url_for("signup") }}">Sign Up</a></p>
+                            <p class="text-center">Don't have an account yet? <a href="{{ url_for("signup") }}">Sign
+                                Up</a></p>
                         </div>
                         <!--End of link to creating an account-->
 

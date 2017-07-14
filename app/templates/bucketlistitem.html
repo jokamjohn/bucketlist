@@ -32,7 +32,6 @@
     <!--Start of main content-->
     <div class="container">
         <div class="row bucket-page">
-
             <!--Page heading and create bucket button-->
             <div class="col-md-12">
                 <h2 class="pull-left"><strong>{{ bucket.name }}</strong> Bucket items</h2>
@@ -42,7 +41,23 @@
             <!--End of Page heading and create bucket button-->
         </div>
 
-        {% if bucket %}
+        <!--Show flash messages-->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="row">
+                    <div class="col-md-12">
+                        {% for message in messages %}
+                            <div class="alert alert-success alert-dismissable">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                                <strong>Success!</strong> {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% if bucket.items %}
             <!--Start of Dummy Buckets List Table-->
             <div class="table-condensed">
                 <table class="table table-hover bucket-table">

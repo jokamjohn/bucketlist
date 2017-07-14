@@ -39,7 +39,7 @@
                         <div class="panel-heading">Edit <strong>{{ item.name }}</strong> Bucket</div>
 
 
-                        <form action="{{ url_for("editbucket", bucket_id=bucket.id) }}" class="form-horizontal"
+                        <form action="{{ url_for("edititem", bucket_id=bucket.id, item_id=item.id) }}" class="form-horizontal"
                               method="post">
 
                             <!--Start of item name field-->
