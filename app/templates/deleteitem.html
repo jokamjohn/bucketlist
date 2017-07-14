@@ -1,0 +1,80 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Delete Item
+{% endblock %}
+
+{% block nav %}
+    <!--Start of navigation bar-->
+    <nav class="nav navbar-inverse navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navaber-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="index.html" class="navbar-brand text-muted">BUCKETLIST</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navaber-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="">{{ user.username.upper() }}</a></li>
+                    <li class="active"><a href="{{ url_for('logout') }}">logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--End of navigation bar-->
+{% endblock %}
+
+{% block body %}
+    <!--Start of main content-->
+    <div class="container">
+        <div class="row">
+            <!--Start of Panel holding the login form-->
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-default main-content">
+                    <div class="panel-body">
+                        <div class="panel-heading">Delete <strong>{{ item.name }}</strong> Item</div>
+
+                        <!--Start of login form-->
+                        <form action="{{ url_for("deleteitem", bucket_id=bucket.id, item_id=item.id) }}" class="form-horizontal"
+                              method="post">
+
+                            {% if  error %}
+                                <div>
+                                    <p class="text-center text-danger">{{ error }}</p>
+                                </div>
+                            {% endif %}
+
+                            <div>
+                                <p class="text-danger text-center">You are about to delete the <strong>{{ item.name }}</strong> Item.
+                                    This is
+                                    permanent, it cannot be undone!</p>
+                            </div>
+                            <!--Start of submit button -->
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <input type="submit" value="Delete Item" class="btn btn-danger btn-lg">
+                                </div>
+                            </div>
+                            <!--End of submit button-->
+
+                        </form>
+                        <!--End of edit form-->
+
+                        <!--Cancel edit-->
+                        <div>
+                            <a href="{{ url_for('bucketlist') }}">Cancel</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--End of Panel -->
+
+        </div>
+    </div>
+    <!--End of main content-->
+{% endblock %}

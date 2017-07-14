@@ -1,0 +1,84 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Home | BucketList
+{% endblock %}
+
+{% block nav %}
+    <!--Start of navigation bar-->
+    <nav class="nav navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navaber-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="{{ url_for('index') }}" class="navbar-brand text-muted">BUCKETLIST</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="navaber-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('signup') }}">Sign Up</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--End of navigation bar-->
+{% endblock %}
+
+{% block body %}
+    <!--Start of main content-->
+    <div class="container">
+
+        <!--Start of page header and jumbotron-->
+        <header class="page-header jumbotron">
+            <h1>Dreams and Goals tracking app</h1>
+            <p class="lead">
+                BucketList app allows you to record and share things you want to achieve or
+                experience before reaching a certain age.
+            </p>
+            <p class="text-center"><a href="{{ url_for('login') }}" class="btn btn-success btn-xl ">Get Started</a></p>
+        </header>
+        <!--End of page header and jumbotron-->
+
+        <!--Start of app feature columns-->
+        <div class="row">
+
+            <!--Start of create column-->
+            <div class="col-md-4">
+                <b class="glyphicon glyphicon-plus glyphicon-home"></b>
+                <h3 class="text-center">Create</h3>
+                <p class="text-center">Create a bucket and add your goals and dreams you want to achieve</p>
+            </div>
+            <!--End of create column-->
+
+            <!--Start of Edit column-->
+            <div class="col-md-4">
+                <b class="glyphicon glyphicon-edit glyphicon-home"></b>
+                <h3 class="text-center">Edit</h3>
+                <p class="text-center">Changed your mind or made a typo? No problem you can edit the bucket and its
+                    items</p>
+            </div>
+            <!--End of Edit column-->
+
+            <!--Start of Share column-->
+            <div class="col-md-4">
+                <b class="glyphicon glyphicon-share glyphicon-home"></b>
+                <h3 class="text-center">Share</h3>
+                <p class="text-center">
+                    We know you always want to share your achievements with family and friends.
+                    Easily share your goals with them
+                </p>
+            </div>
+            <!--End of Share column-->
+
+        </div>
+        <!--End of app features columns-->
+
+    </div>
+    <!--End of main content-->
+{% endblock %}
+
