@@ -1,9 +1,11 @@
-from flask import render_template, request, redirect, url_for, session, flash
+from flask import render_template, request, redirect, url_for, flash
 from app import app
+from flask_login import login_required, login_user, logout_user, current_user
 from app.application import Application
 from app.models import User
 from app.models import Bucket
 from app.models import BucketItem
+from app import login_manager
 
 application = Application()
 
@@ -53,10 +55,11 @@ def login():
     """
     error = None
     if request.method == 'POST':
-        if request.form['username'] and request.form['password']:
-            if application.does_user_exist(request.form['username']):
-                if application.login_user(request.form['username'], request.form['password']):
-                    session['username'] = request.form['username']
+        username_ = request.form['username']
+        if username_ and request.form['password']:
+            if application.does_user_exist(username_):
+                if application.login_user(username_, request.form['password']):
+                    login_user(application.get_user(username_))
                     return redirect(url_for('bucketlist'))
                 return render_template('login.html', error="Incorrect password")
             return render_template('login.html', error="No account found, please sign up first")
@@ -64,7 +67,18 @@ def login():
     return render_template('login.html', error=error)
 
 
+@login_manager.user_loader
+def load_user(username):
+    """
+    Return the logined in user by querying for their username
+    :param username:
+    :return:
+    """
+    return application.get_user(username)
+
+
 @app.route('/bucket/list', methods=['GET', 'POST'])
+@login_required
 def bucketlist():
     """
     This method shows the user buckets.
@@ -73,7 +87,7 @@ def bucketlist():
     :return: 
     """
     error = None
-    user = application.get_user(session['username'])
+    user = current_user
     if not user:
         return redirect(url_for('login'))
     if request.method == 'POST':
@@ -86,6 +100,7 @@ def bucketlist():
 
 
 @app.route('/edit/bucket/<bucket_id>', methods=['GET', 'POST'])
+@login_required
 def editbucket(bucket_id):
     """
     This route enables a user to edit their buckets
@@ -93,7 +108,7 @@ def editbucket(bucket_id):
     :return: 
     """
     error = None
-    user = application.get_user(session['username'])
+    user = current_user
     if not user:
         return redirect(url_for('login'))
     bucket = user.get_bucket(bucket_id)
@@ -109,6 +124,7 @@ def editbucket(bucket_id):
 
 
 @app.route('/delete/bucket/<bucket_id>', methods=['GET', 'POST'])
+@login_required
 def deletebucket(bucket_id):
     """
     This route enables a user to delete a bucket
@@ -116,7 +132,7 @@ def deletebucket(bucket_id):
     :return: 
     """
     error = None
-    user = application.get_user(session['username'])
+    user = current_user
     if not user:
         return redirect(url_for('login'))
     bucket = user.get_bucket(bucket_id)
@@ -132,6 +148,7 @@ def deletebucket(bucket_id):
 
 
 @app.route('/bucket/items/<bucket_id>', methods=['GET', 'POST'])
+@login_required
 def bucketitems(bucket_id):
     """
     Route to show and create bucket items.
@@ -139,7 +156,7 @@ def bucketitems(bucket_id):
     :return: 
     """
     error = None
-    user = application.get_user(session['username'])
+    user = current_user
     if not user:
         return redirect(url_for('login'))
     bucket = user.get_bucket(bucket_id)
@@ -158,6 +175,7 @@ def bucketitems(bucket_id):
 
 
 @app.route('/bucket/item/<bucket_id>/<item_id>', methods=['GET', 'POST'])
+@login_required
 def edititem(bucket_id, item_id):
     """
     Route to edit an item specified by the Id
@@ -165,7 +183,7 @@ def edititem(bucket_id, item_id):
     :param item_id: 
     :return: 
     """
-    user = application.get_user(session['username'])
+    user = current_user
     if not user:
         return redirect(url_for('login'))
     bucket = user.get_bucket(bucket_id)
@@ -183,6 +201,7 @@ def edititem(bucket_id, item_id):
 
 
 @app.route('/bucket/item/delete/<bucket_id>/<item_id>', methods=['GET', 'POST'])
+@login_required
 def deleteitem(bucket_id, item_id):
     """
     Route to delete an item from a bucket specified by the Id.
@@ -190,7 +209,7 @@ def deleteitem(bucket_id, item_id):
     :param item_id: 
     :return: 
     """
-    user = application.get_user(session['username'])
+    user = current_user
     if not user:
         return redirect(url_for('login'))
     bucket = user.get_bucket(bucket_id)
@@ -206,12 +225,13 @@ def deleteitem(bucket_id, item_id):
 
 
 @app.route('/logout')
+@login_required
 def logout():
     """
-    This methods clears the user session and logs the user out
+    This methods clears the user session using flask-login and logs the user out
     :return: 
     """
-    session.pop('username', None)
+    logout_user()
     return redirect(url_for('login'))
 
 

@@ -59,8 +59,8 @@ class Application:
 
     def generate_random_key(self):
         """
-        Generate a random string to act as an Id when creating a bucket and 
+        Generate a random string to act as an Id when creating a bucket and
         bucket items
-        :return: 
+        :return:
         """
         return ''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(10))

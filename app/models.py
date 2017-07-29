@@ -1,4 +1,7 @@
-class User:
+from flask_login import UserMixin
+
+
+class User(UserMixin):
     """
     User model class 
     """
@@ -8,6 +11,13 @@ class User:
         self.name = name
         self.password = password
         self.buckets = {}
+
+    def get_id(self):
+        """
+        Return the username of the user as the Id
+        :return:
+        """
+        return self.username
 
     def create_bucket(self, bucket):
         """
